@@ -4,11 +4,11 @@ import FormLabel from "@mui/material/FormLabel";
 import Grid from "@mui/material/Grid";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import { styled } from "@mui/material/styles";
-import dayjs, { Dayjs } from "dayjs";
+import dayjs from "dayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { IPersonalDetails } from "../types";
 
 interface IPersonalDetailsProps {
@@ -28,9 +28,17 @@ const PersonalDetails: React.FC<IPersonalDetailsProps> = ({ setCompleted }) => {
     citizenship: "",
     passportNumber: "",
     consent: false,
-  });
+  });  
 
-  
+  useEffect(() => {
+    const isCompleted = personalDetails.firstName !== "" &&
+      personalDetails.lastName !== "" &&
+      personalDetails.birthDate !== null &&
+      personalDetails.citizenship !== "" &&
+      personalDetails.passportNumber !== "" &&
+      personalDetails.consent === true;
+    setCompleted(isCompleted);
+  }, [personalDetails, setCompleted]);
 
   return (
     <Grid container spacing={3}>

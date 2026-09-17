@@ -134,7 +134,14 @@ export const RegistrationStepper = () => {
               <Typography variant="h6" component="h2" gutterBottom>
                 {steps[activeStep].label}
               </Typography>
-              <CurrentStepComponent setCompleted={setCompleted} />
+              <CurrentStepComponent
+                setCompleted={(completed) =>
+                  setCompleted((previous) => ({
+                    ...previous,
+                    [activeStep]: completed,
+                  }))
+                }
+              />
             </Paper>
             <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
               <Button
