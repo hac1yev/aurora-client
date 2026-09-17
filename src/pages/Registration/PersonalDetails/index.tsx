@@ -50,7 +50,7 @@ const PersonalDetails: React.FC<IPersonalDetailsProps> = ({ setCompleted }) => {
       </FormGrid>
       <FormGrid size={{ xs: 12, md: 6 }}>
         <FormLabel htmlFor="lastName" required>
-          Last name
+          Last names
         </FormLabel>
         <OutlinedInput
           id="lastName"
